@@ -1,0 +1,137 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+<title>米津玄師クイズ</title>
+</head>
+<body>
+
+<header>
+  <h1>米津玄師クイズ</h1>
+</header>
+
+<main>
+  <ul>
+    <li id="gu_btn">アイネクライネ</li>
+    <li id="cho_btn">bow and arrow</li>
+    <li id="par_btn">iris out</li>
+  </ul>
+  <div>米津玄師の歌は？「<span id="pc_hands">なに？</span>」</div>
+
+  <!-- 画像をうつす -->
+  <div id="yonezu_area" style="text-align:center; position:relative;">
+  
+    <!-- 米津の画像 -->
+    <img id="yonezu_base" src="img/yonezu.png" width="300">
+
+    <!-- 曲の画像 -->
+      <img id="yonezu_hand" src="img/ainekuraine.png" width="250"
+          style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); display: none;z-index:100;">
+  </div>
+
+  <div id="judgment"></div>
+
+</main>
+
+<!-- 音声ファイル -->
+<!-- アイネクライネ -->
+<audio id="sound_ainekuraine" src="sound/ainekuraine.m4a"></audio>
+
+<!-- bow and arrow -->
+<audio id="sound_bow_and_arrow" src="sound/bow_and_arrow.m4a"></audio>
+
+<!-- iris out -->
+<audio id="sound_iris_out" src="sound/iris_out.m4a"></audio>
+
+<!-- ハズレ音 -->
+<audio id="sound_hazure" src="sound/hazure.mp3"></audio> <footer></footer>
+
+<footer></footer>
+<script>
+//じゃんけん用のSCRIPTを書いてください
+
+//まずボタンをクリック
+    $("#gu_btn, #cho_btn, #par_btn").on("click", function() {   
+        
+
+      //自分の手を決める
+      const my_hand = $(this).attr("id"); //クリックされたボタンのidを取得
+
+      //コンピュータの手がランダムに決まる
+      let pc_hand = "";
+      const r = Math.ceil( Math.random() * 3); //1~3どれか一つの数字
+
+        if(r == 1){pc_hand = 'アイネクライネ';
+        }else if(r == 2){pc_hand = 'bow and arrow';
+        }else{pc_hand = 'iris out';
+        }
+      
+      $("#pc_hands").html(pc_hand);
+
+      //米津の画像を変える
+      let hand_img = "";
+      if(pc_hand == "アイネクライネ"){
+          hand_img = "img/ainekuraine.png";
+      } else if(pc_hand == "bow and arrow"){
+          hand_img = "img/bow and arrow.png";
+      } else {
+          hand_img = "img/iris out.png";
+      }
+
+      $("#yonezu_base").hide();
+      $("#yonezu_hand").attr("src", hand_img).show();
+
+      //勝敗を判定する
+      let result = "";
+
+      if(my_hand == "gu_btn" && pc_hand == "bow and arrow"){
+          result = "ハズレ";
+      } else if(my_hand == "cho_btn" && pc_hand == "アイネクライネ"){
+          result = "ハズレ ";
+      } else if(my_hand == "par_btn" && pc_hand == "アイネクライネ"){
+          result = "ハズレ "; 
+      } else if(my_hand == "gu_btn" && pc_hand == "iris out"){
+          result = "ハズレ";
+      } else if(my_hand == "cho_btn" && pc_hand == "iris out"){
+          result = "ハズレ";
+      } else if(my_hand == "par_btn" && pc_hand == "bow and arrow"){
+          result = "ハズレ";
+      } else {
+          result = "あたり！うまい！！";
+      }
+
+      $("#judgment").html(result);
+
+      //当たり時の音再生
+      // 3曲リセット
+      const soundAine = document.getElementById("sound_ainekuraine");
+      const soundBow  = document.getElementById("sound_bow_and_arrow");
+      const soundIris = document.getElementById("sound_iris_out");
+      const soundHazure = document.getElementById("sound_hazure");
+
+      [soundAine, soundBow, soundIris].forEach(s => {
+        s.pause();
+        s.currentTime = 0;
+    });
+
+    // 当たりの時だけ、その曲を流す
+      if(result === "あたり！うまい！！"){
+        if(pc_hand === "アイネクライネ"){
+            soundAine.play();
+        } else if(pc_hand === "bow and arrow"){
+            soundBow.play();
+        } else if(pc_hand === "iris out"){
+            soundIris.play();
+        }
+      } else {
+        // ハズレの時はハズレ音を流す
+        soundHazure.play();
+    }
+
+   });
+
+</script>
+</body>
+</html>

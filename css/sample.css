@@ -1,0 +1,144 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 32px;
+}
+header{
+    background-color: none;
+    border-bottom: none;
+    text-align: center;
+}
+main{
+    border-bottom:none;
+}
+footer{
+    background-color: #fff;
+    border-bottom:none;
+    text-align: center;
+}
+p{
+    font-size:200%;
+    text-align: center;
+    border-bottom:1px solid #fff;
+    height:200px;
+}
+ul{
+    padding: 0;
+    border-top: 1px solid #000000;
+    display:table;  /* 定義 */
+    table-layout: fixed;
+    width:100%;
+}
+li{
+    text-align: center;
+    list-style-type:none;
+    border: 1px solid #666;
+    background-color: #FFF;
+    display:table-cell;  /* 定義 */
+    cursor: pointer;
+}
+li:hover{
+    background: #0066CC;
+    color:#fff;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+body {
+  background-image: url("../img/yonezuhaikei.png"); /* 背景画像の指定 */
+  background-size: cover;        /* 全画面にフィット */
+  background-repeat: no-repeat;  /* 繰り返さない */
+  background-position: center;   /* 中央配置 */
+}
+
+
+
+
+/* --- タイトルを見やすく、シンプル --- */
+header h1 {
+  font-size: 60px;
+  font-weight: 300;
+  color: #fff;
+  text-shadow: 3px 3px 0 #000;
+  padding: 5px 0;
+  background: none;
+}
+
+/* --- じゃんけんボタン --- */
+ul {
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+ul li {
+  list-style: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  background: #fff;
+  font-weight: bold;
+  font-size: 26px;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+ul li:hover {
+  background: #ff9500;
+  color: #fff;
+  box-shadow: 6px 6px 0 #000;
+  transform: translate(-2px, -2px);
+}
+
+/* --- 質問文 --- */
+.question_text {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 24px; 
+    white-space: nowrap;
+    color: #fff;
+    text-shadow: 2px 2px 0 #000;
+}
+
+
+
+
+/* --- 勝敗表示 --- */
+#judgment {
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: 4px 4px 0 #000, -2px -2px 0 #ff0000;
+  position: relative;
+  z-index: 200;
+}
+
+#yonezu_hand {
+  position: absolute;
+  top: 40%;   /* ★中央 → 下に移動 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 100;
+}
+
+/* --- 画像エリア --- */
+#yonezu_area {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  height: 200px;  
+} 
+
